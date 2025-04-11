@@ -23,7 +23,7 @@ body.style = "font-family: roboto; display: flex; flex-flow: column; justify-con
 container.style = "display: flex; flex-flow: column; width: 500px; height: 700px; background-color: gold; border: solid 3px grey; border-radius: 20px; padding: 30px; justify-content: flex-start; flex-shrink: 2; gap: 30px;"
 display.style = "height: 150px; flex: 1 1 1; border-radius: 5px; background-color: lightgrey; border: solid 2px black; wid; flex-shrink: 2; display: flex; flex-flow: column;"
 operations.style = "display: flex; flex: 1; justify-content: end; align-items:center; background-color: lightgrey; "
-resultsDisplay.style = "display: flex; flex: 1; justify-content: end; align-items:center; background-color: red; "
+resultsDisplay.style = "display: flex; flex: 1; justify-content: end; align-items:center; background-color: lightgrey; "
 operationsHolder.style = "padding-left: 5px; padding-right: 5px;flex: 1; text-align: right; color: black; border-radius: 5px;"
 resultsDisplayHolder.style = "padding-left: 5px; padding-right: 5px;flex: 1; text-align: right; color: black; font-size: 32px; margin:0; border-radius: 5px;"
 
