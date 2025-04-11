@@ -17,14 +17,15 @@ let operand="";
 let number2=0;
 let result="";
 
+let first = true;
 
-body.style = "font-family: roboto; display: flex;justify-content: center; align-items: center; padding-top: 5%; background-color: white; "
+body.style = "font-family: roboto; display: flex; flex-flow: column; justify-content: center; align-items: center; padding-top: 5%; background-color: white; "
 container.style = "display: flex; flex-flow: column; width: 500px; height: 700px; background-color: gold; border: solid 3px grey; border-radius: 20px; padding: 30px; justify-content: flex-start; flex-shrink: 2; gap: 30px;"
 display.style = "height: 150px; flex: 1 1 1; border-radius: 5px; background-color: lightgrey; border: solid 2px black; wid; flex-shrink: 2; display: flex; flex-flow: column;"
 operations.style = "display: flex; flex: 1; justify-content: end; align-items:center; background-color: lightgrey; "
 resultsDisplay.style = "display: flex; flex: 1; justify-content: end; align-items:center; background-color: red; "
-operationsHolder.style = "padding-left: 5px; padding-right: 5px;flex: 1; text-align: right; color: black;"
-resultsDisplayHolder.style = "padding-left: 5px; padding-right: 5px;flex: 1; text-align: right; color: black; font-size: 32px;"
+operationsHolder.style = "padding-left: 5px; padding-right: 5px;flex: 1; text-align: right; color: black; border-radius: 5px;"
+resultsDisplayHolder.style = "padding-left: 5px; padding-right: 5px;flex: 1; text-align: right; color: black; font-size: 32px; margin:0; border-radius: 5px;"
 
 display.classList.add("display")
 
@@ -201,11 +202,15 @@ function buttonValue(b){
 }
 
 function numberPress(e){
-    if(operand!=""){
-        number1 =(number1*10) + e.value;
-        operationsHolder.innerText = number1;    
+   
+    if(first){
+        
+        number1 =Number(number1*10) + Number(e.value);
+        operationsHolder.innerText = number1; 
+        
     }else{
-        number2 =(number2*10) + e.value;
+       
+        number2 =Number(number2*10) + Number(e.value);
         operationsHolder.innerText = number2;
     }
     
@@ -214,6 +219,9 @@ function numberPress(e){
 }
 function operandPress(e){
     let val = e.value;
+    if(number1>0 && number2>0){
+        equatePress()
+    }
     if(val === "+"){
         operand = "+";
     }else if(val === "-"){
@@ -223,17 +231,29 @@ function operandPress(e){
     }else if(val === "/"){
         operand = "/";
     }
+    if(first){
+        first = false;
+    }else{
+        first = false;
+    }
+        
+    
+    
     operationsHolder.innerText = operand ; 
     resultsDisplayHolder.innerText = result; 
 }
 function clearPress(){
-    number1 = 0;
+    number1 = "";
     number2 = "";
-    operand = 0;
+    operand = "";
+    result=""
+    first = true;
+    chain = false;
     operationsHolder.innerText = 0; 
     resultsDisplayHolder.innerText = result;
 }
 function equatePress(){
+   
     if(number1 !=="" || number2 !=="" || operand !==""){
         if(operand === "+"){
             result = number1 + number2;
@@ -245,13 +265,20 @@ function equatePress(){
             if(number2 != 0){
                 result = number1 / number2;
             }else{
-                result = 'Math error'
+                alert('Math error')
+                clear();
             }
             
         } 
+      
     }else{
         result = number1;
     }
-    operationsHolder.innerText = number1 + " "+ operand + " " + number2; 
+    first = true;
+    let n1 = number1, n2 = number2;
+    operationsHolder.innerText = n1 + " "+ operand + " " + number2; 
     resultsDisplayHolder.innerText = result;
+    
+    number1=result; 
+    number2=0;
 }
